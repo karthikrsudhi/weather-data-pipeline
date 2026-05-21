@@ -23,3 +23,10 @@ if "main" not in data:
 
 dynamodb = boto3.resource('dynamodb',region_name='ap-south-1')
 table = dynamodb.Table('weather_table')
+
+item = {
+    "city": city,
+    "time": datetime.now().isoformat(),
+    "temperature": str(data["main"]["temp"]),
+    "description": data["weather"][0]["description"]
+}
