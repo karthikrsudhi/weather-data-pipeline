@@ -20,3 +20,6 @@ if "main" not in data:
         "statusCode": 400,
         "body": json.dumps(data)
     }
+
+dynamodb = boto3.resource('dynamodb',region_name='ap-south-1')
+table = dynamodb.Table('weather_table')
