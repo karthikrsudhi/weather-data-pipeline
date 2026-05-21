@@ -13,4 +13,10 @@ url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}
 response = urllib.request.urlopen(url)
 data = json.loads(response.read())  
 
-print(data)
+print(data)  
+
+if "main" not in data:
+    return {
+        "statusCode": 400,
+        "body": json.dumps(data)
+    }
