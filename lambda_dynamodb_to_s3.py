@@ -5,3 +5,9 @@ s3 = boto3.client('s3',region_name='ap-south-1')
 BUCKET_NAME = "weatherupdate-bucket-karthi"
 
 def lambda_handler(event, context):
+
+    for record in event['Records']:
+    new_image = record['dynamodb']['NewImage']
+
+    
+
