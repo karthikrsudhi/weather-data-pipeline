@@ -9,5 +9,14 @@ def lambda_handler(event, context):
     for record in event['Records']:
     new_image = record['dynamodb']['NewImage']
 
-    
+    item = {
+    "city": new_image['city']['S'],
+    "time": new_image['time']['S'],
+    "temperature": new_image['temperature']['S'],
+    "description": new_image['description']['S']
+}
+
+
+
+
 
