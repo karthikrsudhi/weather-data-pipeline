@@ -1,32 +1,42 @@
 import json
+import urllib.request
 import boto3
-
-s3 = boto3.client('s3',region_name='ap-south-1')
-BUCKET_NAME = "weatherupdate-bucket-karthi"
+from datetime import datetime  
 
 def lambda_handler(event, context):
 
-    for record in event['Records']:
-    new_image = record['dynamodb']['NewImage']
+api_key = "YOUR_API_KEY"
+city = "Kochi"   
 
-    item = {
-    "city": new_image['city']['S'],
-    "time": new_image['time']['S'],
-    "temperature": new_image['temperature']['S'],
-    "description": new_image['description']['S']
-}
+url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
 
-file_name = f"{item['city']}_{item['time']}.json"
+response = urllib.request.urlopen(url)
+data = json.loads(response.read())  
 
-s3.put_object(
-    Bucket=BUCKET_NAME,
-    Key=file_name,
-    Body=json.dumps(item)
-)
+print(data)  
+
+if "main" not in data:
+    return {
+        "statusCode": 400,
+        "body": json.dumps(data)
+    }
+
+dynamodb = boto3.resource('dynamodb',region_name='ap-south-1')
+table = dynamodb.Table('weather_table')
+
+item = {
+    "city": city,
+    "time": datetime.now().isoformat(),
+    "temperature": str(data["main"]["temp"]),
+    "description": data["weather"][0]["description"]
+}  
+
+table.put_item(Item=item)  
+
 return {
     "statusCode": 200,
-    "body": "Data sent to S3"
-}
+    "body": json.dumps(item)
+}  
 
 
 
