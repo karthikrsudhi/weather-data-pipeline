@@ -23,6 +23,11 @@ s3.put_object(
     Key=file_name,
     Body=json.dumps(item)
 )
+return {
+    "statusCode": 200,
+    "body": "Data sent to S3"
+}
+
 
 
 
