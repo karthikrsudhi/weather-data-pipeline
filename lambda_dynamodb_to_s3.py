@@ -16,6 +16,8 @@ def lambda_handler(event, context):
     "description": new_image['description']['S']
 }
 
+file_name = f"{item['city']}_{item['time']}.json"
+
 
 
 
