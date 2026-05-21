@@ -36,4 +36,4 @@ table.put_item(Item=item)
 return {
     "statusCode": 200,
     "body": json.dumps(item)
-}
+}  
