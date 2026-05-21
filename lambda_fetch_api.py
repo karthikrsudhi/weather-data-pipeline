@@ -29,4 +29,6 @@ item = {
     "time": datetime.now().isoformat(),
     "temperature": str(data["main"]["temp"]),
     "description": data["weather"][0]["description"]
-}
+}  
+
+table.put_item(Item=item)
