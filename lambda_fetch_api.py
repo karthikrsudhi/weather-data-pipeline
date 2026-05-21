@@ -31,4 +31,9 @@ item = {
     "description": data["weather"][0]["description"]
 }  
 
-table.put_item(Item=item)
+table.put_item(Item=item)  
+
+return {
+    "statusCode": 200,
+    "body": json.dumps(item)
+}
