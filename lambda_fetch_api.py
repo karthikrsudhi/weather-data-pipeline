@@ -6,4 +6,6 @@ from datetime import datetime
 def lambda_handler(event, context):
 
 api_key = "YOUR_API_KEY"
-city = "Kochi"  
+city = "Kochi"   
+
+url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
