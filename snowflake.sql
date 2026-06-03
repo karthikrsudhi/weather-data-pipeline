@@ -35,3 +35,10 @@ AS
 COPY INTO weather_data
 FROM @my_s3_stage
 FILE_FORMAT = (TYPE = 'JSON');
+
+ALTER PIPE my_pipe REFRESH;
+
+COPY INTO weather_data
+FROM @my_s3_stage
+FILE_FORMAT = (TYPE = 'JSON')
+FORCE = TRUE;
