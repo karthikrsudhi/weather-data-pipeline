@@ -20,4 +20,7 @@ LIST @my_s3_stage;
 
 COPY INTO weather_data
 FROM @my_s3_stage
-FILE_FORMAT = (TYPE = 'JSON');
+FILE_FORMAT = (TYPE = 'JSON'); 
+
+SELECT * FROM weather_data;
+
