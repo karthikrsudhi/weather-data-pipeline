@@ -11,3 +11,8 @@ CREATE TABLE weather_data (
 CREATE OR REPLACE STAGE my_s3_stage
 URL = 's3://weatherupdate-bucket-karthi/'
 FILE_FORMAT = weather_json;
+
+-- Credentials managed securely using environment variables
+-- AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
+-- AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
+
