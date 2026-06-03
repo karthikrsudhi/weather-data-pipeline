@@ -16,3 +16,8 @@ FILE_FORMAT = weather_json;
 -- AWS_ACCESS_KEY = os.getenv("AWS_ACCESS_KEY")
 -- AWS_SECRET_KEY = os.getenv("AWS_SECRET_KEY")
 
+LIST @my_s3_stage;
+
+COPY INTO weather_data
+FROM @my_s3_stage
+FILE_FORMAT = (TYPE = 'JSON');
