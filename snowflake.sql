@@ -42,3 +42,15 @@ COPY INTO weather_data
 FROM @my_s3_stage
 FILE_FORMAT = (TYPE = 'JSON')
 FORCE = TRUE;
+
+SELECT COUNT(*) FROM weather_data;
+
+SELECT data FROM weather_data LIMIT 100;
+
+SELECT 
+    data:city::STRING AS city,
+    data:temperature::FLOAT AS temp,
+    data:description::STRING AS description,
+    data:time::TIMESTAMP AS report_time
+FROM weather_data;
+
